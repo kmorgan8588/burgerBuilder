@@ -4,11 +4,14 @@ import styles from './Burger.module.css';
 
 
 const burger = (props) => {
+    const transformedIngredients = Object.keys(props.ingredients).map(ingredient => {
+        return [...Array(props.ingredients[ingredient]).fill('').map((_, i) =>
+            (<BurgerIngredient key={ingredient + i} type={ingredient} />))]
+    })
     return (
         <div className={styles.Burger}>
             <BurgerIngredient type="bread-top" />
-            <BurgerIngredient type="cheese" />
-            <BurgerIngredient type="meat" />
+            {transformedIngredients}
             <BurgerIngredient type="bread-bottom" />
 
         </div>
