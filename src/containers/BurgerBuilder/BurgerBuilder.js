@@ -4,6 +4,7 @@ import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import INGREDIENT_PRICES from '../../constants/IngredientPrices';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
+import modal from '../../components/UI/Modal/Modal';
 
 class BurgerBuilder extends Component {
     state = {
@@ -13,7 +14,14 @@ class BurgerBuilder extends Component {
             cheese: 0,
             meat: 0
         },
-        totalPrice: 4
+        totalPrice: 4,
+        purchasing: false
+    }
+
+    purchaseHandler = () => {
+        this.setState({
+            purchasing: true
+        })
     }
 
     addIngredientHandler = (type) => {
@@ -56,9 +64,10 @@ class BurgerBuilder extends Component {
         const disableOrder = Object.keys(disabledInfo).every(el => !!disabledInfo[el])
 
         const { ingredients } = this.state;
+
         return (
             <Fragment>
-                <Modal>
+                <Modal show={this.state.purchasing}>
                     <OrderSummary ingredients={this.state.ingredients} />
                 </Modal>
                 <Burger ingredients={ingredients} />
@@ -68,8 +77,8 @@ class BurgerBuilder extends Component {
                     add={this.addIngredientHandler}
                     del={this.removeIngredientHandler}
                     controls={ingredients}
-                    disableOrder={disableOrder} />
-
+                    disableOrder={disableOrder}
+                    ordered={this.purchaseHandler} />
             </Fragment>
         )
     }
