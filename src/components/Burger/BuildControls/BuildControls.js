@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './BuildControls.module.css';
 import BuildControl from './BuildControl/BuildControl';
-
+import PropTypes from 'prop-types';
 
 const buildControls = (props) => {
     const controls = Object.keys(props.controls).map(label => (
@@ -22,6 +22,14 @@ const buildControls = (props) => {
                 onClick={props.ordered}>ORDER NOW</button>
         </div>
     )
+}
+
+buildControls.propTypes = {
+    controls: PropTypes.objectOf(PropTypes.number),
+    disableOrder: PropTypes.bool,
+    ordered: PropTypes.func,
+    add: PropTypes.func,
+    del: PropTypes.func
 }
 
 export default buildControls;

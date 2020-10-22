@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
 import styles from './Modal.module.css';
 import Backdrop from '../Backdrop/Backdrop';
+import PropTypes from 'prop-types';
+
 
 const modal = (props) => {
     return (
@@ -16,6 +18,11 @@ const modal = (props) => {
             </div>
         </Fragment>
     );
+}
+
+modal.propTypes = {
+    show: PropTypes.bool,
+    remove: PropTypes.func
 }
 
 export default modal;

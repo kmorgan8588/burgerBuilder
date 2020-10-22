@@ -7,7 +7,6 @@ const navigationItems = (props) => {
         <ul className={styles.NavigationItems}>
             <NavigationItem link="/" active={true} >Burder Builder</NavigationItem>
             <NavigationItem link="/">Checkout</NavigationItem>
-
         </ul>
     )
 }

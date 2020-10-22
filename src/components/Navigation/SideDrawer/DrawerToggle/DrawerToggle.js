@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './DrawerToggle.module.css';
+import PropTypes from 'prop-types';
 
 const drawerToggle = (props) => {
     return (
@@ -9,6 +10,10 @@ const drawerToggle = (props) => {
             <div></div>
         </div>
     )
+}
+
+drawerToggle.propTypes = {
+    toggle: PropTypes.func
 }
 
 export default drawerToggle;

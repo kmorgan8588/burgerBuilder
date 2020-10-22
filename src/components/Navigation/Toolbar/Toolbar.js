@@ -3,6 +3,8 @@ import styles from './Toolbar.module.css';
 import Logo from '../../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
+import PropTypes from 'prop-types';
+
 
 const toolbar = (props) => {
     return (
@@ -16,6 +18,10 @@ const toolbar = (props) => {
             </nav>
         </header>
     )
+}
+
+toolbar.propTypes = {
+    toggle: PropTypes.func.isRequired
 }
 
 export default toolbar;

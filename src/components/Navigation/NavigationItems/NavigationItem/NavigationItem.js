@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './NavigationItem.module.css';
+import PropTypes from 'prop-types';
 
 const navigationItem = (props) => {
     return (
@@ -10,6 +11,11 @@ const navigationItem = (props) => {
             >{props.children}</a>
         </li>
     )
+}
+
+navigationItem.propTypes = {
+    link: PropTypes.string,
+    active: PropTypes.bool
 }
 
 export default navigationItem;

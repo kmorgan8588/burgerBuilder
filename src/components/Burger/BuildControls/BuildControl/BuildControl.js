@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './BuildControl.module.css';
+import PropTypes from 'prop-types';
 
 const buildControl = (props) => {
     return (
@@ -14,6 +15,13 @@ const buildControl = (props) => {
                 onClick={() => props.clickMore(props.type)}>More</button>
         </div>
     )
+}
+
+buildControl.propTypes = {
+    label: PropTypes.string.isRequired,
+    disabled: PropTypes.bool.isRequired,
+    clickLess: PropTypes.func.isRequired,
+    clickMore: PropTypes.func.isRequired
 }
 
 export default buildControl;
