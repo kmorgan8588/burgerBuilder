@@ -14,7 +14,9 @@ const buildControls = (props) => {
             label={label.charAt(0).toUpperCase() + label.substring(1)} />))
     return (
         <div className={styles.BuildControls}>
+            <p>Total Price: <strong>${props.price.toFixed(2)}</strong></p>
             {controls}
+            <button disabled={props.disableOrder} className={styles.OrderButton}>ORDER NOW</button>
         </div>
     )
 }

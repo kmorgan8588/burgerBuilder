@@ -24,7 +24,7 @@ class BurgerBuilder extends Component {
                 [type]: value
             },
             totalPrice: newPrice
-        }, () => console.log(this.state))
+        })
     }
 
     removeIngredientHandler = (type) => {
@@ -40,7 +40,7 @@ class BurgerBuilder extends Component {
                 [type]: value
             },
             totalPrice: newPrice
-        }, () => console.log(this.state))
+        })
 
     }
 
@@ -52,15 +52,20 @@ class BurgerBuilder extends Component {
             disabledInfo[key] = disabledInfo[key] <= 0
         }
 
+        const disableOrder = Object.keys(disabledInfo).every(el => !!disabledInfo[el])
+
         const { ingredients } = this.state;
         return (
             <Fragment>
                 <Burger ingredients={ingredients} />
                 <BuildControls
+                    price={this.state.totalPrice}
                     disabled={disabledInfo}
                     add={this.addIngredientHandler}
                     del={this.removeIngredientHandler}
-                    controls={ingredients} />
+                    controls={ingredients}
+                    disableOrder={disableOrder} />
+
             </Fragment>
         )
     }
