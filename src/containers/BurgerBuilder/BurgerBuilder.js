@@ -4,7 +4,6 @@ import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import INGREDIENT_PRICES from '../../constants/IngredientPrices';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
-import modal from '../../components/UI/Modal/Modal';
 
 class BurgerBuilder extends Component {
     state = {
