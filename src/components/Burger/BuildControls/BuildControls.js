@@ -4,7 +4,12 @@ import BuildControl from './BuildControl/BuildControl';
 
 
 const buildControls = (props) => {
-    const controls = Object.keys(props.controls).map(label => (<BuildControl key={label} label={label.charAt(0).toUpperCase() + label.substring(1)} />))
+    const controls = Object.keys(props.controls).map(label => (
+        <BuildControl key={label}
+            clickMore={props.add}
+            clickLess={props.del}
+            type={label}
+            label={label.charAt(0).toUpperCase() + label.substring(1)} />))
     return (
         <div className={styles.BuildControls}>
             {controls}
