@@ -5,7 +5,9 @@ import BuildControl from './BuildControl/BuildControl';
 
 const buildControls = (props) => {
     const controls = Object.keys(props.controls).map(label => (
-        <BuildControl key={label}
+        <BuildControl
+            disabled={props.disabled[label]}
+            key={label}
             clickMore={props.add}
             clickLess={props.del}
             type={label}
