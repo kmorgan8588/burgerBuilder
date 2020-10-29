@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import Layout from './components/Layout/Layout'
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
@@ -11,12 +12,16 @@ class App extends Component {
   }
 
   render() {
-    return (<div>
-      <Layout>
-        <BurgerBuilder />
-        <Checkout />
-      </Layout>
-    </div>);
+    return (
+      <div>
+        <Layout>
+          <Switch>
+            <Route path="/checkout" component={Checkout} />
+            <Route path="/" exact component={BurgerBuilder} />
+          </Switch>
+        </Layout>
+      </div>
+    );
   }
 }
 
