@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const button = (props) => {
     return (
-        <button onClick={props.clicked} className={[styles.Button, styles[props.btnType]].join(' ')}>
+        <button disabled={props.disabled} onClick={props.clicked} className={[styles.Button, styles[props.btnType]].join(' ')}>
             {props.children}
         </button>
     )
