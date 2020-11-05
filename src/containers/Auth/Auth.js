@@ -105,27 +105,32 @@ class Auth extends Component {
             )
         })
 
-        let form = (
+        if (this.props.loading) {
+            inputs = <Spinner />
+        }
+        let errorMessage = null
+
+        if (this.props.error) {
+            errorMessage = <p>{this.props.error.message}</p>
+        }
+
+        return (
             <div className={styles.Auth}>
+                {errorMessage}
                 <form onSubmit={this.onFormSubmit}>
                     {inputs}
                     <Button btnType="Success">SUBMIT</Button>
                 </form>
                 <Button btnType="Danger" clicked={this.swtichAuthModeHandler}>{this.state.isSignup ? "Log In" : "Sign Up"}</Button>
             </div>
-        )
-
-        if (this.props.loading) {
-            form = <Spinner />
-        }
-
-        return form;
+        );
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        loading: state.auth.loading
+        loading: state.auth.loading,
+        error: state.auth.error
     }
 }
 
