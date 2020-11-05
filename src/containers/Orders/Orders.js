@@ -8,7 +8,6 @@ import { fetchOrders } from '../../store/actions/index';
 
 class Orders extends Component {
     componentDidMount() {
-        console.log(this.props.token)
         this.props.onFetchOrders(this.props.token)
     }
 

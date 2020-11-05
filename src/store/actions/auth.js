@@ -54,3 +54,10 @@ export const auth = (email, password, isSignup) => {
             .catch(err => dispatch(authFail(err.response.data.error)))
     }
 }
+
+export const setAuthRedirect = (path) => {
+    return {
+        type: actionTypes.SET_AUTH_REDIRECT,
+        path: path
+    }
+}
