@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import styles from './Auth.module.css';
 import { auth } from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
+
 
 class Auth extends Component {
     state = {
@@ -81,7 +83,7 @@ class Auth extends Component {
         this.props.onAuthSubmit(this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup)
     }
 
-    swtichAuthModeHandler = () => {
+    switchAuthModeHandler = () => {
         this.setState(prevState => (
             {
                 isSignup: !prevState.isSignup
@@ -90,6 +92,10 @@ class Auth extends Component {
     }
 
     render() {
+        if (this.props.isAuthed) {
+            return <Redirect to="/" />
+        }
+
         let inputs = Object.entries(this.state.controls).map(([key, entry]) => {
             return (
                 <Input
@@ -121,7 +127,7 @@ class Auth extends Component {
                     {inputs}
                     <Button btnType="Success">SUBMIT</Button>
                 </form>
-                <Button btnType="Danger" clicked={this.swtichAuthModeHandler}>{this.state.isSignup ? "Log In" : "Sign Up"}</Button>
+                <Button btnType="Danger" clicked={this.switchAuthModeHandler}>{this.state.isSignup ? "Go to Log In" : "Go to Sign Up"}</Button>
             </div>
         );
     }
@@ -130,7 +136,8 @@ class Auth extends Component {
 const mapStateToProps = (state) => {
     return {
         loading: state.auth.loading,
-        error: state.auth.error
+        error: state.auth.error,
+        isAuthed: !!state.auth.token
     }
 }
 
