@@ -8,23 +8,22 @@ import { fetchOrders } from '../../store/actions/index';
 
 class Orders extends Component {
     componentDidMount() {
-        this.props.onFetchOrders(this.props.token)
+        this.props.onFetchOrders(this.props.token, this.props.userId)
     }
 
     render() {
         let orders = <Spinner />;
 
         if (!this.props.loading) {
-            orders = this.props.orders.filter(order => order.userId === this.props.userId)
-                .map(order => {
-                    return (
-                        <Order
-                            key={order.id}
-                            ingredients={order.ingredients}
-                            price={order.price}
-                        />
-                    )
-                })
+            orders = this.props.orders.map(order => {
+                return (
+                    <Order
+                        key={order.id}
+                        ingredients={order.ingredients}
+                        price={order.price}
+                    />
+                )
+            })
         }
         return (
             <div>
@@ -45,7 +44,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onFetchOrders: (token) => dispatch(fetchOrders(token))
+        onFetchOrders: (token, userId) => dispatch(fetchOrders(token, userId))
     }
 }
 
