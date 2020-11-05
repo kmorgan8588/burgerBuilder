@@ -1,6 +1,6 @@
 import * as actionTypes from '../actions/actionTypes';
 import ingredentPrices from '../../constants/IngredientPrices';
-import { updateObject } from '../utility';
+import { updateObject } from '../../utilities/utility';
 
 
 const initalState = {

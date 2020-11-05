@@ -7,6 +7,7 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 import Input from '../../../components/UI/Input/Input';
 import styles from './ContactData.module.css';
 import * as actionCreators from '../../../store/actions/index'
+import { updateObject } from '../../../utilities/utility';
 
 class ContactData extends Component {
     state = {
@@ -130,19 +131,15 @@ class ContactData extends Component {
     }
 
     inputChangeHandler = (event, formKey) => {
-        const updatedOrderForm = {
-            ...this.state.orderForm
-        }
-        const updatedFormElement = {
-            ...updatedOrderForm[formKey]
-        }
-        updatedFormElement.value = event.target.value
-        updatedFormElement.touched = true
-        updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation || {})
-        updatedOrderForm[formKey] = updatedFormElement
+        const updatedOrderForm = updateObject(this.state.orderForm, {
+            [formKey]: updateObject(this.state.orderForm[formKey], {
+                value: event.target.value,
+                touched: true,
+                valid: this.checkValidity(event.target.value, this.state.orderForm[formKey].validation || {})
+            })
+        })
 
-
-        let formIsValid = Object.values(this.state.orderForm).every(entry => {
+        let formIsValid = Object.values(updatedOrderForm).every(entry => {
             return entry.valid
         })
 
