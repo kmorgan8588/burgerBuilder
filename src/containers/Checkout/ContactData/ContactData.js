@@ -7,7 +7,7 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 import Input from '../../../components/UI/Input/Input';
 import styles from './ContactData.module.css';
 import * as actionCreators from '../../../store/actions/index'
-import { updateObject } from '../../../utilities/utility';
+import { updateObject, checkValidity } from '../../../utilities/utility';
 
 class ContactData extends Component {
     state = {
@@ -91,24 +91,6 @@ class ContactData extends Component {
         formIsValid: false,
     }
 
-    checkValidity(value, rules) {
-        let isValid = true;
-
-        if (rules.required) {
-            isValid = value.trim() !== '' && isValid;
-        }
-
-        if (rules.minLength) {
-            isValid = value.length >= rules.minLength && isValid;
-        }
-
-        if (rules.maxLength) {
-            isValid = value.length <= rules.maxLength && isValid;
-        }
-
-        return isValid;
-    }
-
     orderHandler = (event) => {
         event.preventDefault();
         this.setState({
@@ -135,7 +117,7 @@ class ContactData extends Component {
             [formKey]: updateObject(this.state.orderForm[formKey], {
                 value: event.target.value,
                 touched: true,
-                valid: this.checkValidity(event.target.value, this.state.orderForm[formKey].validation || {})
+                valid: checkValidity(event.target.value, this.state.orderForm[formKey].validation || {})
             })
         })
 
