@@ -24,10 +24,6 @@ const withErrorHandler = (WrappedComponent, axios) => {
             }
         }, [reqInterceptor, resInterceptor])
 
-        useEffect(() => {
-            console.log('Error updated', error)
-        }, [error])
-
         const handleErrorClick = () => {
             setError(null)
         }
