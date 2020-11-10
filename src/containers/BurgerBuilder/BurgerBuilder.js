@@ -84,9 +84,8 @@ class BurgerBuilder extends Component {
         }
         return (
             <Fragment>
-                <Modal remove={this.handleRemoveModal} show={this.state.purchasing}>
-                    {orderSummary}
-                </Modal>
+                {this.state.purchasing ? (<Modal remove={this.handleRemoveModal} show={this.state.purchasing}>{orderSummary}
+                </Modal>) : null}
                 {burger}
             </Fragment>
         )
